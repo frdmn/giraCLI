@@ -11,12 +11,15 @@ Bash script to control a Gira home server
 
 ## Installation
 
-`git clone http://git.frd.mn/iWelt/gira-helper.git`  
-`cd gira-helper`  
-`chmod +x install.sh`  
-`./install.sh`  
+`git clone http://git.frd.mn/iWelt/gira-helper.git`
 
-Last but not least, adjust the configuration file with:  
+`cd gira-helper`
+
+`chmod +x install.sh`
+
+`./install.sh`
+
+Last but not least, adjust the configuration file with:
 
 `vi $HOME/.gira.cfg`
 
