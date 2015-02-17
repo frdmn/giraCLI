@@ -5,19 +5,21 @@ Bash script to control a Gira home server
 
 ## Features
 
-* Switch array of Gira power outlets on/off
-* CLI-based
+* Turn on/off array of Gira power outlets
 * Configurable
+
+## Requirements
+
+* [terminal-notifier](https://github.com/alloy/terminal-notifier):
+
+    brew install terminal-notifier
 
 ## Installation
 
-`git clone http://git.frd.mn/iWelt/gira-helper.git`
-
-`cd gira-helper`
-
-`chmod +x install.sh`
-
-`./install.sh`
+    git clone http://git.frd.mn/iWelt/gira-helper.git
+    cd gira-helper
+    chmod +x install.sh
+    ./install.sh
 
 Last but not least, adjust the configuration file with:
 
