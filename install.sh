@@ -8,18 +8,26 @@ if [ -d /Applications/terminal-notifier.app ]
 then
     echo "... It appears that /Applications/terminal-notifier.app is already installed."
 else
-	echo "... '/Applications/terminal-notifier.app' successfully installed."
-	cp -R ./deps/terminal-notifier.app /Applications/
+    echo "... '/Applications/terminal-notifier.app' successfully installed."
+    cp -R ./deps/terminal-notifier.app /Applications/
 fi
 
+
+ if hash terminal-notifier 2>/dev/null; then
+        echo "... It appears that /Applications/terminal-notifier.app is already installed."
+    else
+        echo "... 'terminal-notifier' missing, please install brew and run:"
+        echo "$ brew install terminal-notifier"
+        exit
+    fi
 # Check for ~/.gira.cfg
 echo "Check for '$HOME/.gira.cfg ...'"
 if [ -f $HOME/.gira.cfg ]
 then
     echo "... It appears that '$HOME/.gira.cfg' is already moved."
 else
-	echo "... '/Applications/terminal-notifier.app' successfully installed."
-	cp -R ./gira.cfg $HOME/.gira.cfg
+    echo "... '/Applications/terminal-notifier.app' successfully installed."
+    cp -R ./gira.cfg $HOME/.gira.cfg
 fi
 
 # Move actuall shell script
@@ -28,9 +36,9 @@ if [ -f $HOME/.bin/gira ]
 then
     echo "... It appears that '$HOME/.bin/gira' is already moved."
 else
-	echo "... '$HOME/.bin/gira' successfully installed."
-	mkdir -p $HOME/.bin
-	cp -R ./gira $HOME/.bin/gira
+    echo "... '$HOME/.bin/gira' successfully installed."
+    mkdir -p $HOME/.bin
+    cp -R ./gira $HOME/.bin/gira
 fi
 
 # Add alias to preferd shell rc file
@@ -41,19 +49,19 @@ then
     echo "Check if '.zshrc' already contains alias for gira binary ..."
     if [[ -n $(grep gira $HOME/.zshrc) ]]
     then
-    	echo "... already installed"
+        echo "... already installed"
     else
-    	echo "alias gira=\"$HOME/.bin/gira\"" >> $HOME/.zshrc
-    	echo "... successfully installed"
+        echo "alias gira=\"$HOME/.bin/gira\"" >> $HOME/.zshrc
+        echo "... successfully installed"
     fi
 else
-	echo "... It appears that you use the default 'bash'."
-	if [[ -n $(grep gira $HOME/.bashrc) ]]
+    echo "... It appears that you use the default 'bash'."
+    if [[ -n $(grep gira $HOME/.bashrc) ]]
     then
-    	echo "... already installed"
+        echo "... already installed"
     else
-    	echo "alias gira=\"$HOME/.bin/gira\"" >> $HOME/.bashrc
-    	echo "... successfully installed"
+        echo "alias gira=\"$HOME/.bin/gira\"" >> $HOME/.bashrc
+        echo "... successfully installed"
     fi
 fi
 
