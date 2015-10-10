@@ -3,16 +3,28 @@
 # Copyright (C) 2013 Jonas Friedmann
 
 # Get passed arguments
-args="${@}"
+args="${*}"
 
 # Check for args
 if [[ ${args} != "ein" &&  ${args} != "aus" ]]; then
   echo "Invalid argument: has to be 'ein' or 'aus'."
-  exit
+  exit 1
+fi
+
+# Check for config file
+if [[ ! -f ~/.gira.conf ]]; then
+  echo "Missing configuration file: ~/.gira.conf"
+  exit 1
+fi
+
+# Check for terminal-notifier
+if [[ ! -f /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier ]]; then
+  echo "Missing dependency: terminal-notifier"
+  exit 1
 fi
 
 # load config file
-. ${HOME}/.gira.cfg
+. ~/.gira.conf
 
 # Function to send Notification Center messages
 function notification {
@@ -21,8 +33,8 @@ function notification {
 
 # For each outlet defined in config
 for i in "${OUTLETS[@]}"; do
-  printf "Calling outlet 'licht0${i}${args}'... "
+  printf "Trigger outlet '%s:0%s (%s)'... " "${OFFICE}" "${i}" "${args}"
   curl -s "${SERVER}/${OFFICE}licht0${i}${args}"
-  notification "Verbinde zu Outlet '${OFFICE}/0${i}${args}' ..." >/dev/null 2>&1
+  notification "Trigger outlet '${OFFICE}:0${i} (${args})' ..." >/dev/null 2>&1
   printf "done\n"
 done
