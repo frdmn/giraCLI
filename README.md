@@ -32,10 +32,6 @@ editor ~/.gira.conf
 
 ## Screenshots
 
-#### Command line interface
+### Command line interface
 
 ![cli](http://static.yeahwh.at/plugins/GiraHelper/1_cli.png)
-
-#### Configuration
-
-![conf](http://static.yeahwh.at/plugins/GiraHelper/2_conf.png)
