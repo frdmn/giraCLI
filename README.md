@@ -34,4 +34,4 @@ editor ~/.gira.conf
 
 ### Command line interface
 
-![cli](http://static.yeahwh.at/plugins/GiraHelper/1_cli.png)
+![cli](http://up.frd.mn/FNP6b.png)
