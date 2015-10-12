@@ -21,7 +21,7 @@ brew install terminal-notifier
 ```shell
 git clone http://git.frd.mn/iWelt/gira-helper.git
 cp gira-helper/gira /usr/local/bin/
-cp gira-helper/.gira.conf ~/
+cp gira-helper/gira.conf ~/.gira.conf
 ```
 
 Last but not least, adjust the configuration file with:
