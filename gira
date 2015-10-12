@@ -6,8 +6,8 @@
 args="${*}"
 
 # Check for args
-if [[ ${args} != "ein" &&  ${args} != "aus" ]]; then
-  echo "Invalid argument: has to be 'ein' or 'aus'."
+if [[ ${args} != "on" &&  ${args} != "off" ]]; then
+  echo "Invalid argument: has to be 'on' or 'off'."
   exit 1
 fi
 
@@ -31,10 +31,17 @@ function notification {
    /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "Gira" -message "${@}"
 }
 
+# Translate state
+if [[ "$args" == "on" ]]; then
+  state="ein"
+elif [[ "$args" == "off" ]]; then
+  state="aus"
+fi
+
 # For each outlet defined in config
 for i in "${OUTLETS[@]}"; do
   printf "Trigger outlet '%s:0%s (%s)'... " "${OFFICE}" "${i}" "${args}"
-  curl -s "${SERVER}/${OFFICE}licht0${i}${args}"
+  curl -s "${SERVER}/${OFFICE}licht0${i}${state}"
   notification "Trigger outlet '${OFFICE}:0${i} (${args})' ..." >/dev/null 2>&1
   printf "done\n"
 done
