@@ -10,8 +10,8 @@ notifierBool=false
 args="${*}"
 
 # Check for args
-if [[ ${args} != "on" &&  ${args} != "off" ]]; then
-  echo "Invalid argument: has to be 'on' or 'off'."
+if [[ ${args} != "on" &&  ${args} != "off" &&  ${args} != "config" ]]; then
+  echo "Invalid argument: has to be 'on', 'off' or 'config'."
   exit 1
 fi
 
@@ -40,6 +40,11 @@ if [[ "$args" == "on" ]]; then
   state="ein"
 elif [[ "$args" == "off" ]]; then
   state="aus"
+elif [[ "$args" == "config" ]]; then
+  for i in "${OUTLETS[@]}"; do
+    echo "${OFFICE}:0${i}"
+  done
+  exit 0
 fi
 
 # For each outlet defined in config
@@ -49,3 +54,5 @@ for i in "${OUTLETS[@]}"; do
   notification "Trigger outlet '${OFFICE}:0${i} (${args})' ..." >/dev/null 2>&1
   printf "done\n"
 done
+
+exit 0
