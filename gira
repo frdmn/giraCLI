@@ -2,6 +2,10 @@
 # GiraHelper v1
 # Copyright (C) 2013 Jonas Friedmann
 
+# Variables
+notifierBin="/Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier"
+notifierBool=false
+
 # Get passed arguments
 args="${*}"
 
@@ -18,17 +22,17 @@ if [[ ! -f ~/.gira.conf ]]; then
 fi
 
 # Check for terminal-notifier
-if [[ ! -f /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier ]]; then
-  echo "Missing dependency: terminal-notifier"
-  exit 1
+if [[ -f "${notifierBin}" ]]; then
+  notifierBool=true
 fi
 
-# load config file
+# Load config file
 . ~/.gira.conf
 
 # Function to send Notification Center messages
 function notification {
-   /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "Gira" -message "${@}"
+    # Speed up execution by executing next command in the background
+    notifierBool && /Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier -title "Gira" -message "${@}" &
 }
 
 # Translate state
