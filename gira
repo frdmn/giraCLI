@@ -41,8 +41,11 @@ if [[ "$args" == "on" ]]; then
 elif [[ "$args" == "off" ]]; then
   state="aus"
 elif [[ "$args" == "config" ]]; then
+  echo "Server: ${SERVER}"
+  echo "Office: ${OFFICE}"
+  echo "Outlets:"
   for i in "${OUTLETS[@]}"; do
-    echo "${OFFICE}:0${i}"
+    echo "- ${OFFICE}:0${i}"
   done
   exit 0
 fi
