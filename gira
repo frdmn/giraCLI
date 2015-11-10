@@ -8,6 +8,7 @@ notifierBool=false
 
 # Get passed arguments
 state="${1}"
+outlet="${2}"
 
 # Check for state
 if [[ ${state} != "on" &&  ${state} != "off" &&  ${state} != "config" ]]; then
@@ -47,6 +48,15 @@ elif [[ "$state" == "config" ]]; then
   for i in "${OUTLETS[@]}"; do
     echo "- ${OFFICE}:0${i}"
   done
+  exit 0
+fi
+
+# Check if outlet sub arg
+if [[ ! -z "${outlet}" ]]; then
+  printf "Trigger outlet '%s:0%s (%s)'... " "${OFFICE}" "${outlet}" "${state}"
+  curl -s "${SERVER}/${OFFICE}licht0${outlet}${state}"
+  notification "Trigger outlet '${OFFICE}:0${outlet} (${state})' ..." >/dev/null 2>&1
+  printf "done\n"
   exit 0
 fi
 
