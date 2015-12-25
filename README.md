@@ -12,16 +12,12 @@ Bash script to control a Gira home server
 
 * [terminal-notifier](https://github.com/alloy/terminal-notifier):
 
-```shell
-brew install terminal-notifier
-```
-
 ## Installation
 
 ```shell
-git clone https://github.com/frdmn/GiraHelper.git
-cp GiraHelper/gira /usr/local/bin/
-cp GiraHelper/gira.conf ~/.gira.conf
+brew tap frdmn/homebrew-formulas
+brew install terminal-notifier
+cp /usr/local/opt/girahelper/gira.conf ~/.gira.conf
 ```
 
 Last but not least, adjust the configuration file with:
