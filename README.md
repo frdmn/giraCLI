@@ -16,8 +16,8 @@ Bash script to control a Gira home server
 
 ```shell
 brew tap frdmn/homebrew-formulas
-brew install terminal-notifier
-cp /usr/local/opt/girahelper/config.sample.json ~/.gira.json
+brew install girahelper terminal-notifier
+cp /usr/local/opt/girahelper/gira.json ~/.gira.json
 ```
 
 Last but not least, adjust the configuration file with:
