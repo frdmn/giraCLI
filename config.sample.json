@@ -1,0 +1,10 @@
+{
+  "server": "http://haus-1-eg.intern.company.com:888",
+  "office": "1e18",
+  "outlets": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ]
+}
