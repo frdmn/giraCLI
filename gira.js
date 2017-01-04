@@ -13,14 +13,14 @@ if (command === 'on') {
     .usage('$0 on')
     .help('h')
     .example('$0 on', 'Turn on all the configured outlets')
-    .example('$0 on 13', 'Turn on only outlet "13"')
+    .example('$0 on 13', 'Turn on only outlet #13')
     .argv;
 } else if (command === 'off'){
   yargs.reset()
     .usage('$0 world')
     .help('h')
     .example('$0 off', 'Turn off all the configured outlets')
-    .example('$0 off 13', 'Turn off only outlet "13"')
+    .example('$0 off 13', 'Turn off only outlet #13')
     .argv;
 } else {
   yargs.showHelp();
