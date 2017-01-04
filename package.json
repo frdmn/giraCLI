@@ -1,0 +1,28 @@
+{
+  "name": "giracli",
+  "version": "1.0.0",
+  "description": "CLI script to control a Gira home server",
+  "main": "gira.js",
+  "scripts": {
+    "test": "false"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frdmn/GiraHelper.git"
+  },
+  "keywords": [
+    "gira",
+    "home",
+    "server",
+    "control",
+    "power",
+    "light",
+    "switches"
+  ],
+  "author": "Jonas Friedmann <j@frd.mn>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frdmn/GiraHelper/issues"
+  },
+  "homepage": "https://github.com/frdmn/GiraHelper#readme"
+}
