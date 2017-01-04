@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/frdmn/GiraHelper/issues"
   },
-  "homepage": "https://github.com/frdmn/GiraHelper#readme"
+  "homepage": "https://github.com/frdmn/GiraHelper#readme",
+  "dependencies": {
+    "yargs": "^6.6.0"
+  }
 }
