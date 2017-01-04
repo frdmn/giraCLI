@@ -1,5 +1,15 @@
 #!/usr/bin/env node
 
+var fs = require('fs');
+var prettyjson = require('prettyjson');
+var path = require('path');
+
+if (!fs.existsSync(path.join(process.env.HOME, '.gira.json'))) {
+  console.log('Error')
+}
+
+var config = require(path.join(process.env.HOME, '.gira.json'));
+
 var yargs = require('yargs')
   .usage('Usage: $0 <command> [options]')
   .command('on [outlet]', 'Power on outlets')
