@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
-var prettyjson = require('prettyjson');
-var path = require('path');
+var fs = require('fs')
+    , prettyjson = require('prettyjson')
+    , path = require('path');
 
+// Check if configuration file exists
 if (!fs.existsSync(path.join(process.env.HOME, '.gira.json'))) {
   console.log('Error')
+} else {
+  var config = require(path.join(process.env.HOME, '.gira.json'));
 }
 
-var config = require(path.join(process.env.HOME, '.gira.json'));
-
+// Initiate argument parser
 var yargs = require('yargs')
   .usage('Usage: $0 <command> [options]')
   .command('config', 'Print configuration')
@@ -19,6 +21,7 @@ var yargs = require('yargs')
   argv = yargs.argv,
   command = argv._[0];
 
+// Process sub commands
 if (command === 'config') {
   yargs.reset()
     .usage('$0 config')
@@ -26,6 +29,7 @@ if (command === 'config') {
     .example('$0 config', 'Print loaded configuration')
     .argv;
 
+  // Print current configuration
   console.log(prettyjson.render(config));
 } else if (command === 'on') {
   yargs.reset()
