@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/frdmn/GiraHelper#readme",
   "dependencies": {
+    "prettyjson": "^1.2.1",
     "yargs": "^6.6.0"
   }
 }

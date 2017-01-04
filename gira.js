@@ -12,13 +12,22 @@ var config = require(path.join(process.env.HOME, '.gira.json'));
 
 var yargs = require('yargs')
   .usage('Usage: $0 <command> [options]')
+  .command('config', 'Print configuration')
   .command('on [outlet]', 'Power on outlets')
   .command('off [outlet]', 'Power off outlets')
   .demandCommand(1, 'No argument given. Make sure to provide a valid sub-command!'),
   argv = yargs.argv,
   command = argv._[0];
 
-if (command === 'on') {
+if (command === 'config') {
+  yargs.reset()
+    .usage('$0 config')
+    .help('h')
+    .example('$0 config', 'Print loaded configuration')
+    .argv;
+
+  console.log(prettyjson.render(config));
+} else if (command === 'on') {
   yargs.reset()
     .usage('$0 on')
     .help('h')
