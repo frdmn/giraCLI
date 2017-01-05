@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/frdmn/GiraHelper.git"
+    "url": "git+https://github.com/frdmn/giraCLI.git"
   },
   "keywords": [
     "gira",
@@ -22,12 +22,12 @@
   "author": "Jonas Friedmann <j@frd.mn>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/frdmn/GiraHelper/issues"
+    "url": "https://github.com/frdmn/giraCLI/issues"
   },
   "bin": {
     "gira": "./gira.js"
   },
-  "homepage": "https://github.com/frdmn/GiraHelper#readme",
+  "homepage": "https://github.com/frdmn/giraCLI#readme",
   "dependencies": {
     "node-notifier": "^4.6.1",
     "prettyjson": "^1.2.1",

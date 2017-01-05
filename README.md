@@ -1,4 +1,4 @@
-# giracli
+# giraCLI
 
 ![](http://i.imgur.com/K4SLIZp.png)
 
@@ -7,11 +7,11 @@ CLI script to control a Gira home server.
 ## Installation
 
 1. Install the project using `npm`:
-  `npm install -g giracli`
+  `npm install -g giraCLI`
 2. Create or copy the default configuration file:
 
     ```
-    curl https://raw.githubusercontent.com/frdmn/giracli/master/gira.json -o ~/.gira.json
+    curl https://raw.githubusercontent.com/frdmn/giraCLI/master/gira.json -o ~/.gira.json
     ```
 
 3. Adjust the server and outlet configuration:
@@ -22,7 +22,7 @@ CLI script to control a Gira home server.
 
 ## Usage
 
-Here's a short explanation how to use `giracli`:
+Here's a short explanation how to use `giraCLI`:
 
 ### Power on/off all configured outlets
 
