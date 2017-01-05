@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var fs = require('fs')
+    , notifier = require('node-notifier')
     , path = require('path')
     , prettyjson = require('prettyjson')
     , request = require('request');
@@ -46,12 +47,20 @@ function sendStateToHomeServer(config, command, outlet){
   request
     .get(url)
     .on('error', function(err) {
+      var notifierObject = {
+        'title': 'giraCLI'
+      };
+
       // Make sure to ignore the "socket hang up" messages, since their HTTP implemention sucks
       if (err.code === 'ECONNRESET') {
-        console.log('Trigger outlet "' + config.office + ':' + outlet + '"... done! ✔');
+        notifierObject.message = 'Successfully trigger outlet "' + config.office + ':' + outlet + '"';
+        notifier.notify(notifierObject);
+        console.log(notifierObject.message);
         return true;
       } else {
-        console.log('Trigger outlet "' + config.office + ':' + outlet + '"... failed! ✘');
+        notifierObject.message = 'Failed to trigger outlet "' + config.office + ':' + outlet + '"';
+        notifier.notify(notifierObject);
+        console.log(notifierObject.message);
         return false;
       }
     });
