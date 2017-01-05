@@ -54,11 +54,13 @@ function sendStateToHomeServer(config, command, outlet){
       // Make sure to ignore the "socket hang up" messages, since their HTTP implemention sucks
       if (err.code === 'ECONNRESET') {
         notifierObject.message = 'Successfully trigger outlet "' + config.office + ':' + outlet + '"';
+        notifierObject.icon = path.join(__dirname, 'assets', 'success.png');
         notifier.notify(notifierObject);
         console.log(notifierObject.message);
         return true;
       } else {
         notifierObject.message = 'Failed to trigger outlet "' + config.office + ':' + outlet + '"';
+        notifierObject.icon = path.join(__dirname, 'assets', 'error.png');
         notifier.notify(notifierObject);
         console.log(notifierObject.message);
         return false;
