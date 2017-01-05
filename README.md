@@ -51,7 +51,7 @@ Here's a short explanation how to use `giracli`:
 
 ## Version
 
-1.1.0
+1.1.1
 
 ## License
 
