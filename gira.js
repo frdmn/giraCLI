@@ -43,29 +43,25 @@ function sendStateToHomeServer(config, command, outlet){
   // Construct URL
   var url = config.server + '/' + config.office + 'licht0' + outlet + state;
 
-  // Fire actual request
-  request
-    .get(url)
-    .on('error', function(err) {
-      var notifierObject = {
-        'title': 'giraCLI'
-      };
+  var notifierObject = {
+    'title': 'giraCLI'
+  };
 
-      // Make sure to ignore the "socket hang up" messages, since their HTTP implemention sucks
-      if (err.code === 'ECONNRESET') {
-        notifierObject.message = 'Successfully trigger outlet "' + config.office + ':' + outlet + '"';
-        notifierObject.icon = path.join(__dirname, 'assets', 'success.png');
-        notifier.notify(notifierObject);
-        console.log(notifierObject.message);
-        return true;
-      } else {
-        notifierObject.message = 'Failed to trigger outlet "' + config.office + ':' + outlet + '"';
-        notifierObject.icon = path.join(__dirname, 'assets', 'error.png');
-        notifier.notify(notifierObject);
-        console.log(notifierObject.message);
-        return false;
-      }
-    });
+  request(url, function (error, response, body) {
+    if (error.code === 'ECONNRESET') {
+      notifierObject.message = 'Successfully trigger outlet "' + config.office + ':' + outlet + '"';
+      notifierObject.icon = path.join(__dirname, 'assets', 'success.png');
+      notifier.notify(notifierObject);
+      console.log(notifierObject.message);
+      return true;
+    } else {
+      notifierObject.message = 'Failed to trigger outlet "' + config.office + ':' + outlet + '"';
+      notifierObject.icon = path.join(__dirname, 'assets', 'error.png');
+      notifier.notify(notifierObject);
+      console.log(notifierObject.message);
+      return false;
+    }
+  })
 }
 
 // Check if configuration file exists
