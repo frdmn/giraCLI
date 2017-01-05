@@ -3,6 +3,35 @@
 var fs = require('fs')
     , path = require('path')
     , prettyjson = require('prettyjson')
+    , request = require('request');
+
+function controlHomeServer(config, command, outlet){
+  if (outlet) {
+    sendStateToHomeServer(config, command, outlet);
+  } else {
+    for(var outlet in config.outlets){
+      outlet = config.outlets[outlet];
+      sendStateToHomeServer(config, command, outlet);
+    }
+  }
+
+  return true;
+}
+
+function sendStateToHomeServer(config, command, outlet){
+  var state = (command == 'on' ? 'ein' : 'aus');
+  var url = config.server + '/' + config.office + 'licht0' + outlet + state;
+
+  request
+    .get(url)
+    .on('error', function(err) {
+      if (err.code === 'ECONNRESET') {
+        return true;
+      } else {
+        return false;
+      }
+    });
+}
 
 // Check if configuration file exists
 if (!fs.existsSync(path.join(process.env.HOME, '.gira.json'))) {
@@ -38,6 +67,9 @@ if (command === 'config') {
     .example('$0 on', 'Turn on all the configured outlets')
     .example('$0 on 13', 'Turn on only outlet #13')
     .argv;
+
+    var outlet = yargs.argv._[1];
+    controlHomeServer(config, command, outlet);
 } else if (command === 'off'){
   yargs.reset()
     .usage('$0 world')
@@ -45,6 +77,9 @@ if (command === 'config') {
     .example('$0 off', 'Turn off all the configured outlets')
     .example('$0 off 13', 'Turn off only outlet #13')
     .argv;
+
+    var outlet = yargs.argv._[1];
+    controlHomeServer(config, command, outlet);
 } else {
   yargs.showHelp();
 }
