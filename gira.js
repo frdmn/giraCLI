@@ -71,7 +71,10 @@ var yargs = require('yargs')
   .command('config', 'Print configuration')
   .command('on [outlet]', 'Power on outlets')
   .command('off [outlet]', 'Power off outlets')
-  .demandCommand(1, 'No argument given. Make sure to provide a valid sub-command!'),
+  .demandCommand(1, 'No argument given. Make sure to provide a valid sub-command!')
+  .alias('v', 'version')
+  .version(function() { return require('./package').version; })
+  .describe('v', 'show version information'),
   argv = yargs.argv,
   command = argv._[0];
 
