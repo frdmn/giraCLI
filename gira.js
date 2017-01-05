@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 var fs = require('fs')
+    , path = require('path')
     , prettyjson = require('prettyjson')
-    , path = require('path');
 
 // Check if configuration file exists
 if (!fs.existsSync(path.join(process.env.HOME, '.gira.json'))) {
