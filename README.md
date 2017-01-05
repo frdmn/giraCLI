@@ -1,33 +1,58 @@
-GiraHelper
-==========
+# giracli
 
-Bash script to control a Gira home server
+![](http://i.imgur.com/K4SLIZp.png)
 
-## Features
-
-* Turn on/off array of Gira power outlets
-* Configurable
-
-## Requirements
-
-* [terminal-notifier](https://github.com/alloy/terminal-notifier):
+CLI script to control a Gira home server.
 
 ## Installation
 
-```shell
-brew tap frdmn/homebrew-formulas
-brew install girahelper terminal-notifier
-cp /usr/local/opt/girahelper/gira.json ~/.gira.json
-```
+1. Install the project using `npm`:
+  `npm install -g giracli`
+2. Create or copy the default configuration file:
 
-Last but not least, adjust the configuration file with:
+    ```
+    curl https://raw.githubusercontent.com/frdmn/giracli/master/gira.json -o ~/.gira.json
+    ```
 
-```shell
-vi ~/.gira.json
-```
+3. Adjust the server and outlet configuration:
 
-## Screenshots
+    ```
+    vi ~/.gira.json
+    ```
 
-### Command line interface
+## Usage
 
-![cli](http://up.frd.mn/FNP6b.png)
+Here's a short explanation how to use `giracli`:
+
+### Power on/off all configured outlets
+
+![](http://i.imgur.com/K4SLIZp.png)
+
+### Power on/off a specific outlet
+
+![](http://i.imgur.com/euqYRtn.png)
+
+### Print loaded configuration
+
+![](http://i.imgur.com/o4NOcLk.png)
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch: `git checkout -b feature/my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin feature/my-new-feature`
+5. Submit a pull request
+
+## Requirements / Dependencies
+
+* Gira home server
+* Node
+
+## Version
+
+1.1.0
+
+## License
+
+[MIT](LICENSE)
