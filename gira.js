@@ -5,10 +5,20 @@ var fs = require('fs')
     , prettyjson = require('prettyjson')
     , request = require('request');
 
+/**
+ * Function to decide if all outlets
+ * or a specific one should be triggered
+ * @param  {Array} config
+ * @param  {String} command
+ * @param  {Outlet} outlet  (optional)
+ * @return {Bool}
+ */
 function controlHomeServer(config, command, outlet){
+  // If outlet exists, only control a single one
   if (outlet) {
     sendStateToHomeServer(config, command, outlet);
   } else {
+    // Otherwise, control all configured
     for(var outlet in config.outlets){
       outlet = config.outlets[outlet];
       sendStateToHomeServer(config, command, outlet);
@@ -18,13 +28,25 @@ function controlHomeServer(config, command, outlet){
   return true;
 }
 
+/**
+ * Function to send a specifc state to a
+ * specific outlet
+ * @param  {Array} config
+ * @param  {String} command
+ * @param  {Outlet} outlet  (optional)
+ * @return {Bool}
+ */
 function sendStateToHomeServer(config, command, outlet){
+  // Translate state into "mother tounge" of home server
   var state = (command == 'on' ? 'ein' : 'aus');
+  // Construct URL
   var url = config.server + '/' + config.office + 'licht0' + outlet + state;
 
+  // Fire actual request
   request
     .get(url)
     .on('error', function(err) {
+      // Make sure to ignore the "socket hang up" messages, since their HTTP implemention sucks
       if (err.code === 'ECONNRESET') {
         return true;
       } else {
@@ -37,6 +59,7 @@ function sendStateToHomeServer(config, command, outlet){
 if (!fs.existsSync(path.join(process.env.HOME, '.gira.json'))) {
   console.log('Error')
 } else {
+  // Load configuration into variable
   var config = require(path.join(process.env.HOME, '.gira.json'));
 }
 
@@ -68,7 +91,9 @@ if (command === 'config') {
     .example('$0 on 13', 'Turn on only outlet #13')
     .argv;
 
+    // Store possible outlet in variable
     var outlet = yargs.argv._[1];
+    // Call function to control the home server
     controlHomeServer(config, command, outlet);
 } else if (command === 'off'){
   yargs.reset()
@@ -78,7 +103,9 @@ if (command === 'config') {
     .example('$0 off 13', 'Turn off only outlet #13')
     .argv;
 
+    // Store possible outlet in variable
     var outlet = yargs.argv._[1];
+    // Call function to control the home server
     controlHomeServer(config, command, outlet);
 } else {
   yargs.showHelp();
