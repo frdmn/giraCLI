@@ -51,7 +51,7 @@ Here's a short explanation how to use `giraCLI`:
 
 ## Version
 
-1.1.1
+1.1.2
 
 ## License
 
