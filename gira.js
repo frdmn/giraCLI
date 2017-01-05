@@ -48,8 +48,10 @@ function sendStateToHomeServer(config, command, outlet){
     .on('error', function(err) {
       // Make sure to ignore the "socket hang up" messages, since their HTTP implemention sucks
       if (err.code === 'ECONNRESET') {
+        console.log('Trigger outlet "' + config.office + ':' + outlet + '"... done! ✔');
         return true;
       } else {
+        console.log('Trigger outlet "' + config.office + ':' + outlet + '"... failed! ✘');
         return false;
       }
     });
