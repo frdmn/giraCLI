@@ -8,7 +8,7 @@ CLI script to control a Gira home server.
 
 1. Install the project using `npm`:
   `npm install -g giraCLI`
-2. Create or copy the default configuration file:
+2. Create or copy the default configuration file (`~/.gira.json`):
 
     ```
     curl https://raw.githubusercontent.com/frdmn/giraCLI/master/gira.json -o ~/.gira.json
