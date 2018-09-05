@@ -66,7 +66,7 @@ function sendStateToHomeServer(config, command, outlet){
 
 // Check if configuration file exists
 if (!fs.existsSync(path.join(process.env.HOME, '.gira.json'))) {
-  console.log('Error')
+  console.log('Error: couldn\'t find configuration file ~/.gira.json');
 } else {
   // Load configuration into variable
   var config = require(path.join(process.env.HOME, '.gira.json'));
