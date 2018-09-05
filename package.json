@@ -1,6 +1,6 @@
 {
   "name": "giracli",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "CLI script to control a Gira home server",
   "main": "gira.js",
   "scripts": {
